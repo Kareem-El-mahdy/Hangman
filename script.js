@@ -37,8 +37,6 @@ letters.forEach(letter => {
 
     btn.addEventListener("click", () => {
         handleGuess(letter);
-        btn.style.pointerEvents = "none"; // يمنع تكرار الضغط
-        btn.style.opacity = "0.4";
     });
 
     keyboard.appendChild(btn);
