@@ -28,6 +28,7 @@ let interval;
 
 let keyboard = document.querySelector(".keyboard");
 
+
 const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
 letters.forEach(letter => {
@@ -85,6 +86,8 @@ function gameSuccess()  {
         Open 🔗
       </a>` 
     }
+        keyboard.style.display = "none"
+
     inputSection.style.display = "none";
     play.style.display = "block";
     play.innerHTML = "Play Again";
@@ -107,6 +110,8 @@ function wrongAnswer() {
     play.innerHTML = "Play Again";
     inputSection.style.display = "none";
     gameScore = 0;
+        keyboard.style.display = "none"
+
     aler.style.display = "block"
   aler.innerHTML = `<div class="alert alert-danger" role="alert">
   حاول تعرف عني اكتر 
@@ -123,6 +128,7 @@ function resetBody() {
 }
 
 play.addEventListener("click", () => {
+    keyboard.style.display = "block"
     clearInterval(interval)
     resetBody();
 
