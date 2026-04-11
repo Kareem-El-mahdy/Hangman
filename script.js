@@ -24,6 +24,53 @@ let time = 60
 let interval;
 
 
+
+
+let keyboard = document.querySelector(".keyboard");
+
+const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+
+letters.forEach(letter => {
+    let btn = document.createElement("div");
+    btn.classList.add("key");
+    btn.innerText = letter;
+
+    btn.addEventListener("click", () => {
+        handleGuess(letter);
+        btn.style.pointerEvents = "none"; // يمنع تكرار الضغط
+        btn.style.opacity = "0.4";
+    });
+
+    keyboard.appendChild(btn);
+});
+
+
+
+let keyboard = document.querySelector(".keyboard");
+
+const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+
+letters.forEach(letter => {
+    let btn = document.createElement("div");
+    btn.classList.add("key");
+    btn.innerText = letter;
+
+    btn.addEventListener("click", () => {
+        handleGuess(letter);
+        btn.style.pointerEvents = "none"; // يمنع تكرار الضغط
+        btn.style.opacity = "0.4";
+    });
+
+    keyboard.appendChild(btn);
+});
+
+
+
+
+
+
+
+
 function gameSuccess()  {
     aler.style.display = "block"
     aler.innerHTML = `<div class="alert alert-success" role="alert">
@@ -114,6 +161,7 @@ timer.style.display = "block";
     });
 });
 inputSection.addEventListener("keydown", (k) => {
+  handleGuess(k.key.toLowerCase());
   let letter = k.key.toLowerCase();
   let countWin = false;
 
