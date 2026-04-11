@@ -128,7 +128,7 @@ function resetBody() {
 }
 
 play.addEventListener("click", () => {
-    keyboard.style.display = "block"
+    keyboard.style.display = "flex"
     clearInterval(interval)
     resetBody();
 
