@@ -45,24 +45,30 @@ letters.forEach(letter => {
 });
 
 
+function handleGuess(letter) {
+    let countWin = false;
 
-let keyboard = document.querySelector(".keyboard");
+    for (let i = 0; i < original.length; i++) {
+        if (original[i] === letter && word[i] === "_") {
+            word[i] = letter;
+            gameScore++;
+            countWin = true;
+        }
+    }
 
-const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+    if (!countWin) {
+        wrongAnswer();
+    }
 
-letters.forEach(letter => {
-    let btn = document.createElement("div");
-    btn.classList.add("key");
-    btn.innerText = letter;
+    wordEl.innerHTML = word.join(" ");
 
-    btn.addEventListener("click", () => {
-        handleGuess(letter);
-        btn.style.pointerEvents = "none"; // يمنع تكرار الضغط
-        btn.style.opacity = "0.4";
-    });
+    if (!word.includes("_")) {
+        gameSuccess();
+    }
+}
 
-    keyboard.appendChild(btn);
-});
+
+
 
 
 
