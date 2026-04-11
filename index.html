@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a href="https://kareem-el-mahdy.github.io/Kareem-Almahdy/" target="_blank" class="navbar-brand">Kareem Almahdy</a>
+    <form class="d-flex">
+      <h3 >Score = <span class="score"></span></h3>
+    </form>
+  </div>
+</nav>
+<div class="container  ">
+  <div class="alert " role="alert" style="display: none;"></div>
+    <div class="d-grid gap-2 col-4 mx-auto align-items-center m-5">
+  <button class="btn btn-primary play" type="button ">Play</button>
+    </div>
+    <div class="d-grid col-4 mx-auto align-items-center m-3">
+        <h4 class="timer" style="display: none;" >Timer = </h4>
+    </div>
+
+    <div class="card mb-3 ">
+        
+        <img src="./images/background.jpeg" class="w-75 card-img-top one" style="display: none;" >
+        <img src="./images/head.jpeg" class="card-img-top head" style="display: none;" >
+        <img src="./images/body.jpeg " class="card-img-top body" style="display: none;" >
+        <img src="./images/oneHand.jpeg " class="card-img-top oneHand" style="display: none;" >
+        <img src="./images/twoHands.jpeg " class="card-img-top twoHands" style="display: none;" >
+        <img src="./images/oneLeg.jpeg " class="card-img-top oneLeg" style="display: none;" >
+        <img src="./images/fullBody.jpeg " class="card-img-top fullBody" style="display: none;" >
+        <div class="card-body m-3">
+            <h5 class="card-title">Guess Who I Am 👀</h5>
+            <p class="card-text hint">المجال اللي قررت أركز فيه وأبقى شاطر فيه</p>
+        </div>
+         <button class="card mx-5  align-items-center inputSection">
+                <h1 class="wordPlay">_ _ _ _ _ _</h1>
+         </button>
+    </div>
+   
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+</html>
