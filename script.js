@@ -2,6 +2,8 @@ let aler = document.querySelector(".alert");
 let score = document.querySelector(".score");
 let gameScore = 0;
 let play = document.querySelector(".play");
+let card = document.querySelector(".scorebar");
+let cardtext = document.querySelector(".textscore")
 let timer = document.querySelector(".timer");
 let fullBody = [
   document.querySelector(".one"),
@@ -20,7 +22,8 @@ let countLose = 0;
 let original = "";
 let findword = "";
 let totalscore = 0
-let time = 60
+cardtext.innerHTML = totalscore
+let time = 120
 let interval;
 
 
@@ -29,7 +32,7 @@ let interval;
 let keyboard = document.querySelector(".keyboard");
 
 
-const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+const letters = "1234567890qwertyuiopasdfghjklzxcvbnm".split("");
 
 letters.forEach(letter => {
     let btn = document.createElement("div");
@@ -88,7 +91,6 @@ function gameSuccess()  {
     }
         keyboard.style.display = "none"
 
-    inputSection.style.display = "none";
     play.style.display = "block";
     play.innerHTML = "Play Again";
     gameScore = 0
@@ -111,6 +113,7 @@ function wrongAnswer() {
     inputSection.style.display = "none";
     gameScore = 0;
         keyboard.style.display = "none"
+      
 
     aler.style.display = "block"
   aler.innerHTML = `<div class="alert alert-danger" role="alert">
@@ -120,14 +123,20 @@ function wrongAnswer() {
   
 }
 
+
 function resetBody() {
   fullBody.forEach((el) => {
     if (el) el.style.display = "none";
   });
+  card.style.display = "none "
+  document.querySelector(".scorebtn").style.display = "none"
+  document.querySelector(".card").style.display = "block"
   countLose = 0;
 }
 
+
 play.addEventListener("click", () => {
+
     keyboard.style.display = "flex"
     clearInterval(interval)
     resetBody();
@@ -139,7 +148,58 @@ interval = setInterval(() => {
 
     if (time <= 0) {
         clearInterval(interval);
-        time =120
+        
+        countLose = 7
+        if (totalscore>6) {
+            gameSuccess()
+            card.style.display = "block"
+            play.style.display = "none"
+            document.querySelector(".card").style.display = "none"
+
+        }
+        else{
+        wrongAnswer()
+        card.style.display = "block"
+        play.style.display = "none"
+        document.querySelector(".card").style.display = "none"
+
+    }}
+}, 1000)
+ 
+timer.style.display = "block";
+   
+
+
+
+  countLose = 0;
+  score.innerHTML = totalscore;
+  inputSection.style.display = "block";
+
+  play.style.display = "none";
+  fetch("/images/data.json")
+    .then((Res) => Res.json())
+    .then((data) => {
+      findword = data[Math.floor(Math.random() * data.length)];
+      hint.innerHTML = findword.hint;
+      original = findword.word.toLowerCase();
+
+      word = Array(original.length).fill("_");
+      wordEl.innerHTML = word.join(" ");
+    });
+});
+card.addEventListener("click", () => {
+    keyboard.style.display = "flex"
+    clearInterval(interval)
+    resetBody();
+
+interval = setInterval(() => {
+    time--;
+
+    timer.innerHTML = `${time}`;
+
+    if (time <= 0) {
+        clearInterval(interval);
+        
         countLose = 7
         if (totalscore>6) {
             gameSuccess()
@@ -155,7 +215,7 @@ timer.style.display = "block";
 
 
   countLose = 0;
-  score.innerHTML = gameScore;
+  score.innerHTML = totalscore;
   inputSection.style.display = "block";
 
   play.style.display = "none";
@@ -170,18 +230,12 @@ timer.style.display = "block";
       wordEl.innerHTML = word.join(" ");
     });
 });
+
+
 inputSection.addEventListener("keydown", (k) => {
   handleGuess(k.key.toLowerCase());
-  let letter = k.key.toLowerCase();
-  let countWin = false;
 
-  for (let i = 0; i < original.length; i++) {
-    if (original[i] === letter && word[i] === "_") {
-      word[i] = letter;
-      gameScore++;
-      countWin = true;
-    }
-  }
+  
 
   if (gameScore === original.length) {
     gameSuccess()
@@ -195,3 +249,10 @@ inputSection.addEventListener("keydown", (k) => {
   wordEl.innerHTML = word.join(" ");
   score.innerHTML = totalscore;
 });
+
+document.querySelector(".scorebtn").addEventListener("click",() => {
+    card.style.display = "block"
+  
+    document.querySelector(".card").style.display = "none"
+
+})
